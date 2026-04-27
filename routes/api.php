@@ -22,6 +22,3 @@ Route::delete('/equipments/{id}',[EquipmentController::class,'destroy'])->middle
 Route::post('/reviews',[ReviewController::class,'store'])->middleware('throttle:60,1','auth:sanctum');
 Route::get('/rentals',[RentalController::class,'myActiveRentals'])->middleware('throttle:60,1','auth:sanctum');
 Route::put('/user/{id}',[UserController::class,'update'])->middleware('throttle:60,1','auth:sanctum');
-
-//Dev routes *** à supprimer avant la de remettre ***
-Route::post('/admin',[Authcontroller::class,'registerAdmin']);
