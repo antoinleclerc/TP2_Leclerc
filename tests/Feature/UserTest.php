@@ -14,5 +14,16 @@ class UserTest extends TestCase
      */
     use RefreshDatabase;
 
+    public function test_user_can_update_password(): void
+    {
+        $this->seed();
+        $user = User::factory()->create();
+        Sanctum::actingAs($user, ['*']);
+        $request = $this->putJson('/api/user/' . $user->id, [
+            'password' => 'NewPassword123',
+            'password_confirmation' => 'NewPassword123',
+        ]);
+        $request->assertStatus(200);
+    }
 
 }
