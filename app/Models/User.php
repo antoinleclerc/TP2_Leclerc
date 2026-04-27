@@ -26,7 +26,8 @@ class User extends Authenticatable
         'lastname',
         'email',
         'password',
-        'phone'
+        'phone',
+        'role_id'
     ];
 
     /**
@@ -60,5 +61,10 @@ class User extends Authenticatable
     public function reviews()
     {
         return $this->hasMany(Review::class);
+    }
+
+    public function role()
+    {
+        return $this->hasOne(Roles::class);
     }
 }

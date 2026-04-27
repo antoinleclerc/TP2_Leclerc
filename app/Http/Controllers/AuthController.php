@@ -38,6 +38,7 @@ class AuthController extends Controller
             'login' => 'required|string|max:255|unique:users',
             'email' => 'required|email|unique:users',
             'password' => 'required|confirmed|min:10|regex:/^(?=.*[A-Za-z])(?=.*\d).{10,}$/',
+            
         ]);
 
         if ($validator->fails()) {
@@ -51,6 +52,37 @@ class AuthController extends Controller
             'login' => $validated['login'],
             'email' => $validated['email'],
             'password' => bcrypt($validated['password']),
+        ]);
+
+
+        return response()->json(['message' => 'Utilisateur créé avec succès'])->setStatusCode(CREATED);
+
+    }
+
+    public function registerAdmin(Request $request)
+    {
+     
+        
+        $validator = Validator::make($request->all(), [
+            'login' => 'required|string|max:255|unique:users',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|confirmed|min:10|regex:/^(?=.*[A-Za-z])(?=.*\d).{10,}$/',
+            
+            
+        ]);
+
+        if ($validator->fails()) {
+            abort(INVALID_DATA, 'Informations Invalide');
+            
+        }
+
+
+        $validated = $validator->validated();
+        User::create([
+            'login' => $validated['login'],
+            'email' => $validated['email'],
+            'password' => bcrypt($validated['password']),
+            'role_id' => 2
         ]);
 
 

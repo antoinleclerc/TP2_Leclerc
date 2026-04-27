@@ -20,7 +20,7 @@ class RentalFactory extends Factory
     {
 
         $start = fake()->dateTimeBetween('-1 year', 'now');
-        $days = fake()->numberBetween(1, 14);
+        $days = fake()->numberBetween(1, 600);
 
         return [
             'user_id' => User::inRandomOrder()->first()->id,
