@@ -14,6 +14,8 @@ class UserTest extends TestCase
      */
     use RefreshDatabase;
 
+
+    /* trouver comment faire tester avec sanctum dix minutes avant la remise de ça https://laracasts.com/discuss/channels/laravel/laravel-sanctum-testing */
     public function test_user_can_update_password(): void
     {
         $this->seed();
@@ -25,5 +27,7 @@ class UserTest extends TestCase
         ]);
         $request->assertStatus(200);
     }
+
+    
 
 }
